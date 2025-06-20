@@ -17,7 +17,7 @@ def get_random_user_agent():
     return f"Mozilla/5.0 {platform} AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{random_version}.0.0.0 Safari/537.36"
 
 
-def sogou_search_api(query: str, num_results: int = 10, delay: float = 1) -> List[Dict[str, str]]:
+def sogou_search(query: str, num_results: int = 10, delay: float = 1) -> List[Dict[str, str]]:
     """
     逆向实现搜狗搜索API，返回包含title、url、description的list。
     :param query: 搜索关键词
@@ -40,6 +40,7 @@ def sogou_search_api(query: str, num_results: int = 10, delay: float = 1) -> Lis
             resp = requests.get(url, params=params, headers=headers, timeout=10)
             resp.raise_for_status()
         except requests.RequestException as e:
+            print(f"请求失败: {e}")
             break
 
         soup = BeautifulSoup(resp.text, 'html.parser')
@@ -71,7 +72,7 @@ def sogou_search_api(query: str, num_results: int = 10, delay: float = 1) -> Lis
 
 if __name__ == '__main__':
     # 示例用法
-    data = sogou_search_api('人工智能', num_results=15, delay=1)
+    data = sogou_search('人工智能', num_results=15, delay=1)
     print(f"成功获取 {len(data)} 条结果:")
     for i, d in enumerate(data, 1):
         print(f"--- 结果 {i} ---")

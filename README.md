@@ -1,14 +1,14 @@
 # Sogou Search API
 
-An unofficial Python API to get search results from Sogou.
+一个非官方的Python API，用于从搜狗获取搜索结果。
 
-## Installation
+## 安装
 
 ```bash
-pip install sogou_search_lixiuqi
+pip install k-sogou-search
 ```
 
-## Usage
+## 使用
 
 ```python
 from sogou_search import sogou_search_api
